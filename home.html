@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>crop Yield Prediction  </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .main{
+            background-image: url('https://res.cloudinary.com/doumvk0ca/image/upload/v1710757136/mgit2_plas8b.jpg');
+            background-size: cover;
+            width: 100%;
+            height: 100vh;
+        }
+        .nn{
+            color: #a103fc;
+        }
+    </style>
+  </head>
+  <body>
+  <div class="main">
+    <h1 class="text-center text-dark">Crop Yield Prediction Per Country</h1>
+<!--	Year	average_rain_fall_mm_per_year	pesticides_tonnes	avg_temp	Area	Item-->
+  <div class="container my-4 mt-4" style="background-color: rgba(0, 0, 0, 0.5); border-radius: 20px; color:white">
+
+    <h1 class="text-center text-danger">Input All Features Here</h1>
+
+    <form action="/predict" method="post" onsubmit="return valid()">
+    <div class="form-group p-1">
+        <label for="average_rain_fall_mm_per_year">average_rain_fall_mm_per_year</label>
+        <input type="number" class="form-control" name="average_rain_fall_mm_per_year" id="rain" step="any" placeholder="Enter rain-fall range 51 to 3240">
+    </div>
+    <div class="form-group p-1">
+        <label for="pesticides_tonnes">pesticides_tonnes</label>
+        <input type="number" class="form-control" name="pesticides_tonnes" id="pes" step="any" placeholder=" Enter pesticides range 1 to 367778">
+    </div>
+    <div class="form-group p-1">
+        <label for="avg_temp">avg_temp</label>
+        <input type="number" class="form-control" name="avg_temp" id="temp" step="any"placeholder=" Enter tempareture range 1 to 30">
+    </div>
+    <div class="form-group">
+        <label for="Area">Area</label>
+        <select class="form-control" id="Area" name="Area">
+            <option value="area1">Choose country</option>
+            <option value="Albaria">Albaria</option>
+            <option value="Algeria">Algeria</option>
+            <option value="Angola">Angola</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Armenia">Armenia</option>
+            <option value="Australia">Australia</option>
+            <option value="Austria">Austria</option>
+            <option value="Azerbaijan">Azerbaijan</option>
+            <option value="Bahamas">Bahamas</option>
+            <option value="Bahrain">Bahrain</option>
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="Belarus">Belarus</option>
+            <option value="Belgium">Belgium</option>
+            <option value="Botswana">Botswana</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Bulgaria">Bulgaria</option>
+            <option value="Burkina Faso">Burkina Faso</option>
+            <option value="Burundi">Burundi</option>
+            <option value="Cameroon">Cameroon</option>
+            <option value="Canada">Canada</option>
+            <option value="Central African Republic">Central African Republic </option>
+            <option value="Chile">Chile</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Denmark">Denmark</option>
+            <option value="Dominican Republic">Dominican Republic</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="Egypt">Egypt</option>
+            <option value="El Slavador">El Slavador</option>
+            <option value="Eritrea">Eritrea</option>
+            <option value="Estonia">Estonia</option>
+            <option value="Finland">Finland</option>are
+            <option value="France">France</option>
+            <option value="Germany">Germany</option>
+            <option value="Ghana">Ghana</option>
+            <option value="Greece">Greece</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Guinea">Guinea</option>
+            <option value="Guyana">Guyana</option>
+            <option value="Haiti">Haiti</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Hungary">Hungary</option>
+            <option value="India">India</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Iraq">Iraq</option>
+            <option value="Ireland">Ireland</option>
+            <option value="Italy">Italy</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="Japan">Japan</option>
+            <option value="Kazakhstan">Kazakhstan</option>
+            <option value="Kenya">Kenya</option>
+            <option value="Latvia">Latvia</option>
+            <option value="Lebanon">Lebanon</option>
+            <option value="Lesotho">Lesotho</option>
+            <option value="Libya">Libya</option>
+            <option value="Lithuania">Lithuania</option>
+            <option value=">Madagascar">Madagascar</option>
+            <option value="Malawi">Malawi</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Mali">Mali</option>
+            <option value="Mauritania">Mauritania</option>
+            <option value="Mauritius">Mauritius</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Montenegro">Montenegro</option>
+            <option value="Morocco">Morocco</option>
+            <option value="Mozambique">Mozambique</option>
+            <option value="Namibia">Namibia</option>
+            <option value="Nepal">Nepal</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Niger">Niger</option>
+            <option value="Norway">Norway</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="Papua New Guinea">Papua New Guinea</option>
+            <option value="Peru">Peru</option>
+            <option value="Poland">Poland</option>
+            <option value="Portugal">Portugal</option>
+            <option value="Qatar">Qatar</option>
+            <option value="Romania">Romania</option>
+            <option value="Rwanda">Rwanda</option>
+            <option value="Saudi Arabia">Saudi Arabia</option>
+            <option value="Senegal">Senegal</option>
+            <option value="Slovenia">Slovenia</option>
+            <option value="South Afria">South Afria</option>
+            <option value="Spain">Spain</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Sudan">Sudan</option>
+            <option value="Surinane">Surinane</option>
+            <option value="Sweden">Sweden</option>
+            <option value="Switzerland">Switzerland</option>
+            <option value="Tajikistan">Tajikistan</option>
+            <option value="Thailand">Thailand</option>
+            <option value="Tunisia">Tunisia</option>
+            <option value="Turkey">Turkey</option>
+            <option value="Uganda">Uganda</option>
+            <option value="Ukraine">Ukraine</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Zambia">Zambia</option>
+            <option value="ZimbabWe">ZimbabWe</option>
+            
+            
+        </select>
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="Item">Item</label>
+        <select class="form-control" id="Item" placeholder="Area" name="Item">
+            <option value="i">which type of crop do u want</option>
+            <option value="Rice, paddy">Rice</option>
+            <option value="Potatoes">Potatoes</option>
+            <option value="Maize">Maize</option>
+            <option value="Wheat">Wheat</option>
+            <option value="Soybeans">Soybeans</option>
+            <option value="Sorghum">Sorghum</option>
+            <option value="Sweet potatoes">Sweet potatoes</option>
+            <option value="Cassava">Cassava</option>
+            <option value="Yams">Yams</option>
+            <option value="Plantains and others">Plantains</option>
+            
+        </select>
+    </div>
+    <div class="text-center"><button type="submit" class="btn btn-danger btn-lg mt-2 btn-block ">Predict</button></div>
+    
+</form>
+
+
+      {% if prediction %}
+      <h1 class="text-center tex-danger">
+         Predicted Yield Productions: <br>
+         {{prediction}} HG/HA</h1>
+
+      {% endif %}
+</div>
+</div>
+<script>
+    function valid(){
+        
+        var rain =document.getElementById("rain").value;
+        var pes =document.getElementById("pes").value;
+        var temp =document.getElementById("temp").value;
+
+        if ( isNaN(rain)|| isNaN(pes)|| isNaN(temp)){
+            alert("enter int")
+            return false
+        }
+
+        if (rain <51 || rain>3240 || pes <0 || pes>367778 || temp<2 || temp>30){
+            alert("please enter values in limit")
+            return false
+        }
+      return true
+    }
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
